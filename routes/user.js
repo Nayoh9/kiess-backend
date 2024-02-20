@@ -7,8 +7,8 @@ const Email = require('../models/Email')
 const mongoose = require("mongoose")
 
 
-// Route to save all the new user email
-router.get('/user/newsletter', async (req, res) => {
+// Route to save all the new users email
+router.post('/user/register', async (req, res) => {
     try {
         const { email, newsletter } = req.body
         const email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,3}$/
