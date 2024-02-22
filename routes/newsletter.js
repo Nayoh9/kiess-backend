@@ -19,9 +19,7 @@ router.post("/newsletter", async (req, res) => {
             emails.push(e.email)
         })
 
-        console.log(emails);
-
-        const html = req.body
+        const html = req.body.htmlText
         const emailSender = nodeMailer.createTransport({
             service: "gmail",
             auth: {
@@ -39,13 +37,13 @@ router.post("/newsletter", async (req, res) => {
 
         emailSender.sendMail(mailOptions, (error, info) => {
             if (error) {
-                console.log({ error: error.message });
+                res.status(500).json({ error: error.message });
             } else {
                 console.log("Email sent" + info.response);
+                res.status(200).json("Newsletter sent")
             }
         })
 
-        res.status(200).json("Newsletter sent")
 
     } catch (error) {
         res.status(500).json({ message: error.message })

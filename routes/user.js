@@ -10,8 +10,9 @@ const mongoose = require("mongoose")
 // Route to save all the new users email
 router.post('/user/register', async (req, res) => {
     try {
+
         const { email, newsletter } = req.body
-        const email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,3}$/
+        const email_pattern = /^[^\s@]+@[a-z0-9]+(\.[a-z]{2,3}){1,2}$/
         const testEmail = email_pattern.test(email)
         const existInDb = await Email.findOne({ email: email })
 
