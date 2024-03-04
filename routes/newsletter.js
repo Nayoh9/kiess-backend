@@ -16,34 +16,43 @@ router.post("/newsletter", async (req, res) => {
         const users = await Email.find()
 
         users.forEach((e) => {
-            emails.push(e.email)
-        })
-
-        const html = req.body.htmlText
-        const emailSender = nodeMailer.createTransport({
-            service: "gmail",
-            auth: {
-                user: "y.andre90000@gmail.com",
-                pass: process.env.GMAIL_SERVICE_PASSWORD
+            if (e.newsletter) {
+                emails.push(e.email)
             }
         })
 
-        const mailOptions = {
-            from: "y.andre90000@gmail.com",
-            to: emails,
-            subject: "Kiess Newsletter",
-            html: html
+        const sendEmail = (user) => {
+
+            const html = req.body.htmlText
+            const emailSender = nodeMailer.createTransport({
+                host: "smtp-relay.brevo.com",
+                port: 587,
+                auth: {
+                    user: "y.andre90000@gmail.com",
+                    pass: process.env.EMAIL_SERVICE_PASSWORD
+                }
+            })
+
+            const mailOptions = {
+                from: "y.andre90000@gmail.com",
+                to: user,
+                subject: "Kiess Newsletter",
+                html: html
+            }
+
+            emailSender.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    res.status(500).json({ error: error.message });
+                } else {
+                    console.log("Email sent" + info.response);
+                    res.status(200).json("Newsletter sent")
+                }
+            })
         }
 
-        emailSender.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                res.status(500).json({ error: error.message });
-            } else {
-                console.log("Email sent" + info.response);
-                res.status(200).json("Newsletter sent")
-            }
+        emails.forEach((e) => {
+            sendEmail(e)
         })
-
 
     } catch (error) {
         res.status(500).json({ message: error.message })

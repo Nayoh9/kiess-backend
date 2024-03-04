@@ -11,13 +11,15 @@ const mongoose = require("mongoose")
 router.post('/user/register', async (req, res) => {
     try {
 
-        const { email, newsletter } = req.body
+        console.log(req.body);
+
+        const { email, newsletter, conditions } = req.body
         const email_pattern = /^[^\s@]+@[a-z0-9]+(\.[a-z]{2,3}){1,2}$/
         const testEmail = email_pattern.test(email)
         const existInDb = await Email.findOne({ email: email })
 
-        if (!newsletter) {
-            throw new Error("No newsletter requested")
+        if (!conditions) {
+            throw new Error("Conditions must be accepted")
         }
 
         if (!testEmail) {
@@ -29,12 +31,14 @@ router.post('/user/register', async (req, res) => {
         }
 
         const userEmail = new Email({
-            email: email
+            email: email,
+            newsletter: newsletter
         })
 
         await userEmail.save()
 
-        res.status(400).json("E-mail adress saved")
+        res.status(200).json("E-mail adress saved")
+
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
