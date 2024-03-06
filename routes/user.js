@@ -11,7 +11,6 @@ const mongoose = require("mongoose")
 router.post('/user/register', async (req, res) => {
     try {
 
-        console.log(req.body);
 
         const { email, newsletter, conditions } = req.body
         const email_pattern = /^[^\s@]+@[a-z0-9]+(\.[a-z]{2,3}){1,2}$/
