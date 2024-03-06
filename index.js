@@ -1,9 +1,8 @@
 // Package import
 const express = require('express')
+const dotenv = require('dotenv').config()
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const dotenv = require('dotenv').config()
-
 const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGODB_LOCAL_URL);
