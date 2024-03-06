@@ -9,8 +9,8 @@ const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_LOCAL_URL)
 
 const app = express()
-app.use(cors())
 app.use(express.json())
+app.use(cors())
 app.use(bodyParser.text({ type: 'text/html' }));
 
 
