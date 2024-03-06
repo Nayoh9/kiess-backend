@@ -1,16 +1,18 @@
 // Package import
 const express = require('express')
-const app = express()
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv').config()
 
-app.use(cors())
-app.use(express.json())
-app.use(bodyParser.text({ type: 'text/html' }));
 const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGODB_LOCAL_URL)
+
+const app = express()
+app.use(cors())
+app.use(express.json())
+app.use(bodyParser.text({ type: 'text/html' }));
+
 
 // Routes import
 const userRoute = require('./routes/user')
