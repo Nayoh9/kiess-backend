@@ -11,6 +11,7 @@ const Email = require('../models/Email')
 // Route to send the newsletter to all the users in stored in DB
 router.post("/newsletter", async (req, res) => {
     try {
+        const hello = []
         const emails = []
         const users = await Email.find()
 
