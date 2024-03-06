@@ -6,8 +6,7 @@ const dotenv = require('dotenv').config()
 
 const mongoose = require('mongoose');
 
-mongoose.set("strictQuery", false);
-
+mongoose.set('strictQuery', false)
 mongoose.connect(process.env.MONGODB_LOCAL_URL);
 
 const app = express()
