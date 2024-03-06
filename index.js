@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(bodyParser.text({ type: 'text/html' }));
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONDODB_LOCAL_URL)
+mongoose.connect(process.env.MONGODB_LOCAL_URL)
 
 // Routes import
 const userRoute = require('./routes/user')
