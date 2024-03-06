@@ -6,7 +6,9 @@ const dotenv = require('dotenv').config()
 
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb://127.0.0.1:27017/kiess")
+mongoose.set("strictQuery", false);
+
+mongoose.connect(process.env.MONGODB_LOCAL_URL);
 
 const app = express()
 app.use(express.json())
