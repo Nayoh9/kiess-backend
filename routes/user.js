@@ -44,4 +44,20 @@ router.post('/user/register', async (req, res) => {
 })
 
 
+// Route for the contact form 
+
+router.post('/contact', async (req, res) => {
+
+    console.log(req.body);
+
+    try {
+
+    } catch (error) {
+
+    }
+
+
+})
+
+
 module.exports = router
