@@ -5,7 +5,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGODB_URL);
+mongoose.connect(process.env.MONGODB_LOCAL_URL);
 
 const app = express()
 app.use(express.json())
@@ -15,10 +15,10 @@ app.use(bodyParser.text({ type: 'text/html' }));
 
 // Routes import
 const userRoute = require('./routes/user')
-const newsletterRoute = require('./routes/newsletter')
+const contactRoute = require('./routes/contact')
 
 app.use(userRoute)
-app.use(newsletterRoute)
+app.use(contactRoute)
 
 app.all('*', (req, res) => {
     res.status(400).json('This route does not exist')
