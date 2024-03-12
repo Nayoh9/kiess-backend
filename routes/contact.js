@@ -40,10 +40,10 @@ router.post("/contact/newsletter", async (req, res) => {
             }
 
             const emailSender = nodeMailer.createTransport({
-                host: "smtp-relay.brevo.com",
+                host: process.env.EMAIL_SERVICE_HOST,
                 port: 587,
                 auth: {
-                    user: "y.andre90000@gmail.com",
+                    user: process.env.EMAIL_SERVICE_USER,
                     pass: process.env.EMAIL_SERVICE_PASSWORD
                 }
             })
@@ -75,8 +75,7 @@ router.post("/contact/newsletter", async (req, res) => {
 })
 
 
-// Route for the contact form 
-
+// Route to send a request using the contact form 
 router.post('/contact/request', fileUpload(), async (req, res) => {
 
     try {
