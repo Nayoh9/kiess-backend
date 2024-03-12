@@ -49,7 +49,7 @@ router.post("/contact/newsletter", async (req, res) => {
             })
 
             const mailOptions = {
-                from: "y.andre90000@gmail.com",
+                from: "contact@kiess.fr",
                 to: user,
                 subject: "Kiess Newsletter",
                 html: html
@@ -124,7 +124,8 @@ router.post('/contact/request', fileUpload(), async (req, res) => {
             description: description,
             tel: tel,
             screenshot: arrayOfFilesUrl,
-            request_number: requestsCollectionLength
+            request_number: requestsCollectionLength,
+            is_resolved: false
         })
 
         await request.save()

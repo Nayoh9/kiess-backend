@@ -5,7 +5,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGODB_LOCAL_URL);
+mongoose.connect(process.env.MONGODB_URL);
 
 const app = express()
 app.use(express.json())

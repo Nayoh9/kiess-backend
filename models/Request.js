@@ -28,6 +28,10 @@ const Request = mongoose.model("Request", {
     request_number: {
         type: Number,
         require: true
+    },
+    is_resolved: {
+        type: Boolean,
+        require: true
     }
 
 })
