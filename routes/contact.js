@@ -81,6 +81,9 @@ router.post('/contact/request', fileUpload(), async (req, res) => {
     try {
         const { email, subscriber, question, description, tel } = req.body
 
+        console.log(req.body);
+        console.log(req.files);
+
         let result
         const arrayOfFilesUrl = []
 
@@ -110,7 +113,6 @@ router.post('/contact/request', fileUpload(), async (req, res) => {
                     arrayOfFilesUrl.push(result)
                 }
             }
-
         }
 
 
